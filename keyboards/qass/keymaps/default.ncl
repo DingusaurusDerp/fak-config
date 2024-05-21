@@ -1,5 +1,4 @@
-let { tap, hold, .. } = import "fak/keycode.ncl" in
-
+let { tap, hold, combo, .. } = import "fak/keycode.ncl" in
 let kc = tap.reg.kc in
 let md = tap.reg.mod in
 let tm = tap.reg.mod in
@@ -35,8 +34,10 @@ let LZFT = tap.reg.kc.Z & hold.reg.mod.lsft & hold.reg.behavior {timeout_ms = 15
 #?/Rsft
 let RSFT = tap.reg.kc."/" & hold.reg.mod.rsft & hold.reg.behavior {timeout_ms = 150} in
   
+# Keymap definition
+{
 # --- Combos ---
-  let virtual_keys = [
+  virtual_keys = [
   # The first argument is the timeout_ms (up to 255)
   # The second argument is the key indices/positions (min 2, max 9 keys)
   combo.make 35 [17, 18], # Backspace
@@ -48,12 +49,7 @@ let RSFT = tap.reg.kc."/" & hold.reg.mod.rsft & hold.reg.behavior {timeout_ms = 
   combo.make 35 [18, 19], # Quote
   combo.make 35 [16, 17], # Semicolon
   combo.make 35 [17, 18], # \ 
-  ] in
-
-
-# Keymap definition
-{
-virtual_keys = vvirtual_keys',
+  ],
   layers = [
     [ # Layer 0
       kc.Q,    kc.W,    kc.E,    kc.R,    kc.T,    kc.Y,    kc.U,    kc.I,    kc.O,    kc.P,    XXXX,
